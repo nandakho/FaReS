@@ -1,3 +1,4 @@
 db
 venv
 .gradio
+config.ini
