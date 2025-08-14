@@ -8,7 +8,10 @@ def recognize(image):
     try:
         db_path = os.path.join(base_dir, "db")
         dfs = DeepFace.find(img_path=image, db_path=db_path)
-        niks = list(set(element.split("\\")[-2] for element in dfs[0]['identity'].values))
+        niks = niks = list(set(
+            os.path.basename(os.path.dirname(element))
+            for element in dfs[0]['identity'].values
+        ))
         if len(niks) > 1:
             return {"success": False, "niks": niks, "info": "Identitas ganda"}
         return {"success": True, "niks": niks, "info": None}
